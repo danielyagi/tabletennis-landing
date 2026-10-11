@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TableTennis Pro - Landing Page
 
-## Getting Started
+Landing page para validação de mercado do app TableTennis Pro.
 
-First, run the development server:
+## 🎯 Objetivo
+
+Coletar 100 emails em 14 dias para validar demanda antes de desenvolver MVP.
+
+## 🚀 Rodando Localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Vercel (recomendado)
 
-## Learn More
+```bash
+npm i -g vercel
+vercel --prod
+```
 
-To learn more about Next.js, take a look at the following resources:
+Ou via dashboard: https://vercel.com/new
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📊 Integração Formulário
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Opção 1: Google Forms (mais rápido)**
+1. Criar Google Form com campos: nome, email, nível
+2. Copiar link embed
+3. Substituir `<form>` em `app/page.tsx`
 
-## Deploy on Vercel
+**Opção 2: Mailchimp**
+1. Criar lista em mailchimp.com
+2. Copiar código embed form
+3. Colar em `app/page.tsx`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Opção 3: Firebase (quando criar projeto)**
+```typescript
+import { addDoc, collection } from 'firebase/firestore';
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  await addDoc(collection(db, 'waitlist'), {
+    name, email, level, createdAt: new Date()
+  });
+};
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Estrutura
+
+- `/` - Home (hero + features + waitlist)
+- `/sobre` - Problema, solução, roadmap
+- `/privacidade` - Política LGPD
+- `/contato` - Email contato
+
+## 📈 Métricas
+
+**Meta:** 100 emails em 14 dias
+
+**Tráfego:**
+- R$ 200 Facebook Ads
+- Posts orgânicos (10 grupos TT)
+- Reddit r/tabletennis
+
+## ✅ Checklist
+
+- [x] Landing desenvolvida
+- [x] SEO meta tags
+- [x] Responsive
+- [ ] Formulário integrado
+- [ ] Deploy Vercel
+- [ ] Domínio .com.br
+- [ ] Facebook Ads
